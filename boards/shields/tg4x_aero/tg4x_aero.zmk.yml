@@ -1,0 +1,8 @@
+file_format: "1"
+id: tg4x_aero
+name: TG4x_aero
+type: shield
+url: https://github.com/MythosMann/tg4x
+requires: [pro_micro]
+features:
+  - keys
