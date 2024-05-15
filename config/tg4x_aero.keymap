@@ -40,10 +40,10 @@
 
         default_layer {
             bindings = <
-&kp ESC    &kp Q     &kp W     &kp E        &kp R        &kp T  &kp Y          &kp U         &kp I                    &kp O    &kp P            &kp BSPC
-&kp TAB    &kp A     &kp S     &kp D        &kp F        &kp G  &kp H          &kp J         &kp K                    &kp L    &kp SEMICOLON    &kp SQT
-&kp LSHFT  &kp Z     &kp X     &kp C        &kp V        &kp B  &mt RA(N) N    &kp M         &kp COMMA                &kp DOT  &mt RSHFT SLASH  &mt RSHFT ENTER
-&kp LCTRL  &kp LGUI  &kp LALT  &lt 2 SPACE  &lt 1 SPACE  &to 3  &mt RALT DOWN  &mt RMETA UP  &mt RIGHT_CONTROL RIGHT
+&kp ESC    &kp Q     &kp W     &kp E        &kp R        &kp T     &kp Y        &kp U   &kp I      &kp O    &kp P            &kp BSPC
+&kp TAB    &kp A     &kp S     &kp D        &kp F        &kp G     &kp H        &kp J   &kp K      &kp L    &kp SEMICOLON    &kp SQT
+&kp LSHFT  &kp Z     &kp X     &kp C        &kp V        &kp B     &mt RA(N) N  &kp M   &kp COMMA  &kp DOT  &mt RSHFT SLASH  &mt RSHFT ENTER
+&kp LCTRL  &kp LGUI  &kp LALT  &lt 2 SPACE  &lt 1 SPACE  &kp LEFT  &kp DOWN     &kp UP  &kp RIGHT
             >;
         };
 
@@ -58,10 +58,10 @@
 
         layer_2 {
             bindings = <
-&trans  &kp F1  &kp F2   &kp F3   &kp F4   &trans  &trans    &rgb_ug RGB_EFR  &rgb_ug RGB_HUD  &rgb_ug RGB_HUI  &rgb_ug RGB_EFF  &kp DEL
-&trans  &kp F5  &kp F6   &kp F7   &kp F8   &trans  &kp LEFT  &kp DOWN         &kp UP           &kp RIGHT        &trans           &trans
-&trans  &kp F9  &kp F10  &kp F11  &kp F12  &trans  &trans    &trans           &trans           &trans           &trans           &trans
-&trans  &trans  &trans   &trans   &trans   &trans  &trans    &trans           &trans
+&trans  &kp F1  &kp F2   &kp F3   &kp F4   &trans  &trans    &trans    &trans  &trans     &trans  &kp DEL
+&trans  &kp F5  &kp F6   &kp F7   &kp F8   &trans  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &trans  &trans
+&trans  &kp F9  &kp F10  &kp F11  &kp F12  &trans  &trans    &trans    &trans  &trans     &trans  &trans
+&trans  &trans  &trans   &trans   &trans   &trans  &trans    &trans    &trans
             >;
         };
 
