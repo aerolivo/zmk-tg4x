@@ -19,5 +19,5 @@
 ---
 include:
   - board: nice_nano_v2
-    shield: tg4x_aero
-    #shield: contra
+    #shield: tg4x_aero
+    shield: boardsource4x12
