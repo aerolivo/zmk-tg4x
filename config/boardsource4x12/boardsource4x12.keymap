@@ -1,0 +1,148 @@
+/*
+ * Copyright (c) 2021 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/backlight.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/rgb.h>
+
+#define BT_CTRL     0
+#define NUM_TK      1
+#define DEFAULT     2
+#define NUM_MODS    3
+#define FNS         4
+
+&mt { flavor = "tap-preferred"; };
+
+/ {
+    combos {
+        compatible = "zmk,combos";
+
+        to_bl {
+            bindings = <&to 4>;
+            key-positions = <40 43>;
+            layers = <0>;
+            timeout-ms = <500>;
+            require-prior-idle-ms = <0>;
+        };
+
+        bootloader {
+            bindings = <&bootloader>;
+            key-positions = <0 11 40 43>;
+            timeout-ms = <1000>;
+            layers = <0>;
+        };
+
+        RESET {
+            bindings = <&sys_reset>;
+            key-positions = <36 47 40 43>;
+        };
+    };
+
+    behaviors {
+        new_behavior_1: new_behavior_1 {
+            compatible = "zmk,behavior-tap-dance";
+            label = "NEW_BEHAVIOR_1";
+            #binding-cells = <0>;
+            bindings = <&kp TAB>, <&caps_word>;
+        };
+
+        new_behavior_2: new_behavior_2 {
+            compatible = "zmk,behavior-hold-tap";
+            label = "NEW_BEHAVIOR_2";
+            bindings = <&none>, <&none>;
+
+            #binding-cells = <2>;
+            hold-trigger-key-positions = <35>;
+            tapping-term-ms = <300>;
+            flavor = "tap-preferred";
+        };
+
+        lpar: lpar {
+            compatible = "zmk,behavior-tap-dance";
+            label = "LPAR";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LSHFT>, <&kp LPAR>;
+        };
+
+        rpar: rpar {
+            compatible = "zmk,behavior-tap-dance";
+            label = "RPAR";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp ENTER>, <&kp RETURN>, <&kp RPAR>;
+        };
+    };
+
+    macros {
+        new_macro: new_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&lpar>, <&macro_press>, <&kp LSHFT &kp LSHFT>;
+
+            label = "NEW_MACRO";
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default {
+            bindings = <
+&kp ESC    &kp Q     &kp W     &kp E  &kp R  &kp T      &kp Y        &kp U            &kp I      &kp O              &kp P             &kp BSPC
+&kp TAB    &kp A     &kp S     &kp D  &kp F  &kp G      &kp H        &kp J            &kp K      &kp L              &kp SEMI          &kp SQT
+&kp LSHFT  &kp Z     &kp X     &kp C  &kp V  &kp B      &mt RA(N) N  &mt RIGHT_ALT M  &kp COMMA  &mt RIGHT_ALT DOT  &mt RSHIFT SLASH  &mt RIGHT_SHIFT RETURN
+&kp LCTRL  &kp LGUI  &kp LALT  &sl 4  &sl 3  &kp SPACE  &kp SPACE    &sl 1            &kp LEFT   &kp DOWN           &kp UP            &kp RIGHT
+            >;
+        };
+
+        num_mods {
+            bindings = <
+&kp GRAVE  &kp N1  &kp N2  &kp N3  &kp N4   &kp N5   &kp N6   &kp N7     &kp N8     &kp N9     &kp N0     &trans
+&kp CAPS   &kp F1  &kp F2  &kp F3  &kp F4   &kp F5   &kp F6   &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT   &kp BSLH
+&trans     &kp F7  &kp F8  &kp F9  &kp F10  &kp F11  &kp F12  &kp TILDE  &trans     &kp LBRC   &kp RBRC   &trans
+&trans     &trans  &trans  &to 0   &trans   &trans   &trans   &sl 2      &kp HOME   &kp PG_DN  &kp PG_UP  &kp END
+            >;
+
+            label = "num_mods";
+        };
+
+        fns {
+            bindings = <
+&kp F1           &kp F2        &kp F3                             &kp F4                                  &kp F5      &kp F6      &kp F7      &kp F8    &kp F9      &kp F10       &kp F11       &kp F12
+&kp C_BRI_DN     &kp C_BRI_UP  &kp C_AC_DESKTOP_SHOW_ALL_WINDOWS  &kp C_AC_DESKTOP_SHOW_ALL_APPLICATIONS  &bl BL_DEC  &bl BL_INC  &kp C_PREV  &kp C_PP  &kp C_NEXT  &kp C_VOL_DN  &kp C_VOL_UP  &kp K_MUTE
+&rgb_ug RGB_TOG  &trans        &trans                             &trans                                  &trans      &trans      &trans      &trans    &trans      &trans        &trans        &kp C_AC_PRINT
+&trans           &trans        &trans                             &to 0                                   &trans      &trans      &trans      &trans    &trans      &trans        &trans        &trans
+            >;
+
+            label = "fns";
+        };
+
+        num_tk {
+            bindings = <
+&kp GRAVE  &kp N1  &kp N2  &kp N3  &kp N4     &kp N5    &kp N6     &kp N7  &kp N8  &kp N9  &kp N0     &kp DEL
+&trans     &kp N4  &kp N5  &kp N6  &kp MINUS  &kp PLUS  &kp ASTRK  &kp N4  &kp N5  &kp N6  &kp MINUS  &trans
+&trans     &kp N7  &kp N8  &kp N9  &kp N0     &kp STAR  &kp TILDE  &kp N1  &kp N2  &kp N3  &kp EQUAL  &trans
+&trans     &trans  &trans  &to 0   &sl 4      &trans    &trans     &trans  &trans  &trans  &trans     &trans
+            >;
+
+            label = "num_tk";
+        };
+
+        bt_ctrl {
+            bindings = <
+&kp C_VOL_UP       &kp C_STOP    &kp F3        &kp F4        &kp F5        &kp F6        &kp F7  &kp F8  &kp F9  &kp F10     &kp F11          &kp HOME
+&kp C_NEXT         &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans  &trans  &trans  &trans      &trans           &kp PG_UP
+&kp C_PREV         &bl BL_TOG    &trans        &trans        &trans        &trans        &trans  &trans  &trans  &trans      &rgb_ug RGB_TOG  &kp PG_DN
+&kp C_VOLUME_DOWN  &trans        &trans        &to 0         &trans        &trans        &trans  &trans  &trans  &bt BT_PRV  &bt BT_NXT       &kp END
+            >;
+
+            label = "bt_ctrl";
+        };
+    };
+};
